@@ -20,7 +20,7 @@
   <property name="autoFillBackground">
    <bool>true</bool>
   </property>
-  <widget class="QDateEdit" name="Since">
+  <widget class="QDateEdit" name="Till">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -30,7 +30,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QDateEdit" name="Till">
+  <widget class="QDateEdit" name="Since">
    <property name="geometry">
     <rect>
      <x>240</x>

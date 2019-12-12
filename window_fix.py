@@ -7,8 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import Qt
+from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 
 
 class Ui_Dialog(object):
@@ -18,12 +17,12 @@ class Ui_Dialog(object):
         icon = QtGui.QIcon.fromTheme("icon")
         Dialog.setWindowIcon(icon)
         Dialog.setAutoFillBackground(True)
-        self.Since = QtWidgets.QDateEdit(Dialog)
-        self.Since.setGeometry(QtCore.QRect(240, 230, 111, 31))
-        self.Since.setObjectName("Since")
         self.Till = QtWidgets.QDateEdit(Dialog)
-        self.Till.setGeometry(QtCore.QRect(240, 170, 111, 31))
+        self.Till.setGeometry(QtCore.QRect(240, 230, 111, 31))
         self.Till.setObjectName("Till")
+        self.Since = QtWidgets.QDateEdit(Dialog)
+        self.Since.setGeometry(QtCore.QRect(240, 170, 111, 31))
+        self.Since.setObjectName("Since")
         self.email_label = QtWidgets.QLabel(Dialog)
         self.email_label.setGeometry(QtCore.QRect(40, 50, 81, 31))
         self.email_label.setBaseSize(QtCore.QSize(13, 13))
@@ -77,12 +76,13 @@ class Ui_Dialog(object):
         self.pushButton.setGeometry(QtCore.QRect(390, 310, 101, 41))
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.buttonclicked)
+
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Чеки за такси"))
+        Dialog.setWindowTitle(_translate("Dialog", "main_window"))
         self.email_label.setText(_translate("Dialog", "E-mail"))
         self.password_label.setText(_translate("Dialog", "Password"))
         self.DateSinceLAbel.setText(_translate("Dialog", "Начало периода"))
@@ -96,6 +96,7 @@ class Ui_Dialog(object):
     def buttonclicked(self):
         print('test')
         # since = self.Since.text()
+        print(self.Till.text())
         # till = self.Till.text()
         # email = self.email_input.text()
         # password = self.password_input.text()
