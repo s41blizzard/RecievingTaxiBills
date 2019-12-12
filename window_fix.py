@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-
+import imaplib
 from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 
 
@@ -100,4 +100,12 @@ class Ui_Dialog(object):
         email = self.email_input.text()
         password = self.password_input.text()
         print(since, till, email, password)
-        return since, till, email, password
+        mail = imaplib.IMAP4_SSL('imap.mail.ru')
+        mail.login(email, password)
+
+        mail.select("cabs_reciept")
+        result, data = mail.search(None, "ALL")
+        ids = data[0]  # data is a list.
+        id_list = ids.split()  # ids is a space separated string
+        latest_email_id = id_list[-1]  # get the latest
+        print(id_list)
