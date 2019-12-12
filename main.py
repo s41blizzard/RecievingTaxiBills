@@ -1,7 +1,6 @@
 import sys
 from PyQt5 import QtWidgets, QtCore, QtGui
 
-import window_design
 import window_fix
 
 
