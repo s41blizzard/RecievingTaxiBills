@@ -11,6 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 
 
 class Ui_Dialog(object):
+
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(540, 389)
@@ -60,13 +61,13 @@ class Ui_Dialog(object):
         self.DateTillLabel.setAutoFillBackground(True)
         self.DateTillLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.DateTillLabel.setObjectName("DateTillLabel")
-        self.email_input = QtWidgets.QTextEdit(Dialog)
+        self.email_input = QtWidgets.QLineEdit(Dialog)
         self.email_input.setGeometry(QtCore.QRect(200, 50, 271, 31))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.email_input.setFont(font)
         self.email_input.setObjectName("email_input")
-        self.password_input = QtWidgets.QTextEdit(Dialog)
+        self.password_input = QtWidgets.QLineEdit(Dialog)
         self.password_input.setGeometry(QtCore.QRect(200, 90, 271, 31))
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -94,9 +95,9 @@ class Ui_Dialog(object):
             self.close()
 
     def buttonclicked(self):
-        print('test')
-        # since = self.Since.text()
-        print(self.Till.text())
-        # till = self.Till.text()
-        # email = self.email_input.text()
-        # password = self.password_input.text()
+        since = self.Since.text()
+        till = self.Till.text()
+        email = self.email_input.text()
+        password = self.password_input.text()
+        print(since, till, email, password)
+        return since, till, email, password
