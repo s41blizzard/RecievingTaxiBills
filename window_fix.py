@@ -5,7 +5,7 @@
 # Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
-
+import datetime
 import imaplib
 from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 
@@ -95,17 +95,18 @@ class Ui_Dialog(object):
             self.close()
 
     def buttonclicked(self):
-        since = self.Since.text()
-        till = self.Till.text()
+        since = self.Since.text().replace('.', '-')
+        till = self.Till.text().replace('.', '-')
         email = self.email_input.text()
         password = self.password_input.text()
-        print(since, till, email, password)
-        mail = imaplib.IMAP4_SSL('imap.mail.ru')
+        mail = imaplib.IMAP4_SSL('imap.gmail.com')
         mail.login(email, password)
 
-        mail.select("cabs_reciept")
-        result, data = mail.search(None, "ALL")
+        mail.select("taxi")
+        print(since)
+        print(till)
+        # result, data = mail.search(None, '(SENTSINCE {since})'.format(since=since))
+        result, data = mail.search(None, '(SINCE "{since}" BEFORE "{till}")'.format(since=since, till=till))
         ids = data[0]  # data is a list.
         id_list = ids.split()  # ids is a space separated string
-        latest_email_id = id_list[-1]  # get the latest
         print(id_list)
