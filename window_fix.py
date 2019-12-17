@@ -5,7 +5,7 @@
 # Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
-import datetime
+import datetime as dt
 import imaplib
 from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 
@@ -95,18 +95,24 @@ class Ui_Dialog(object):
             self.close()
 
     def buttonclicked(self):
-        since = self.Since.text().replace('.', '-')
-        till = self.Till.text().replace('.', '-')
+        since_str = self.Since.text()
+        till_str = self.Till.text()
+        print(since_str)
+        print(till_str)
+        since = dt.datetime.strptime(since_str, '%d.%m.%Y').date()
+        since = since.strftime("%d-%b-%Y")
+        print(since)
+        till = dt.datetime.strptime(till_str, '%d.%m.%Y').date()
+        till = till.strftime("%d-%b-%Y")
         email = self.email_input.text()
         password = self.password_input.text()
         mail = imaplib.IMAP4_SSL('imap.gmail.com')
         mail.login(email, password)
 
         mail.select("taxi")
-        print(since)
-        print(till)
-        # result, data = mail.search(None, '(SENTSINCE {since})'.format(since=since))
-        result, data = mail.search(None, '(SINCE "{since}" BEFORE "{till}")'.format(since=since, till=till))
+
+        result, data = mail.search(None, '(SINCE {since} BEFORE {till})'.format(since=since, till=till))
+
         ids = data[0]  # data is a list.
         id_list = ids.split()  # ids is a space separated string
-        print(id_list)
+        print(len(id_list))
